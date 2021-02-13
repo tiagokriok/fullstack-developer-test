@@ -1,8 +1,13 @@
 {
   "name": "backend",
   "version": "1.0.0",
-  "main": "index.js",
+  "main": "src/server.ts",
   "license": "MIT",
+  "scripts": {
+    "build": "tsc",
+    "dev:server": "ts-node-dev --inspect --transpile-only --ignore-watch node_modules src/server.ts",
+    "typeorm": "ts-node-dev ./node_modules/typeorm/cli.js"
+  },
   "dependencies": {
     "cors": "^2.8.5",
     "express": "^4.17.1",
