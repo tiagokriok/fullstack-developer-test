@@ -148,11 +148,13 @@ describe('Product', () => {
       quantity: 1000,
     });
 
-    await request(app).delete(`/products/${response.body.id}`);
+    const deletedResponse = await request(app).delete(
+      `/products/${response.body.id}`,
+    );
 
     const product = await productsRepository.findOne(response.body.id);
 
     expect(product).toBeFalsy();
-    expect(response.status).toBe(204);
+    expect(deletedResponse.status).toBe(204);
   });
 });
