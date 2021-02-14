@@ -17,7 +17,7 @@ class Product {
   @Column()
   description: string;
 
-  @Column('time without time zone')
+  @Column('timestamp without time zone')
   dueDate: Date;
 
   @Column('decimal')
