@@ -126,13 +126,18 @@ describe('Product', () => {
     const productUpdated = await request(app)
       .put(`/products/${response.body.id}`)
       .send({
+        name: 'Bread',
+        description:
+          'a kind of food made of flour or meal that has been mixed with milk or water',
+        dueDate: '2021-11-18',
         price: 5,
+        quantity: 1000,
       });
 
     const product = await productsRepository.findOne(response.body.id);
 
     expect(product).toBeTruthy();
-    expect(product?.price).toBe(5.0);
+    expect(product?.price).toBe('5.00');
     expect(productUpdated.status).toBe(200);
   });
 
