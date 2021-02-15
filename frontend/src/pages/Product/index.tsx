@@ -113,10 +113,12 @@ const Product: React.FC = () => {
       )}
 
       <Container>
-        <a href="edit">
-          Update
-          <FiEdit size={20} />
-        </a>
+        {product && (
+          <Link to={`/update/${product.id}`}>
+            Update
+            <FiEdit size={20} />
+          </Link>
+        )}
         {buttonClicked ? (
           <div id="deleteContainer">
             <button id="yesBtn" type="button" onClick={handleDeleteProduct}>
