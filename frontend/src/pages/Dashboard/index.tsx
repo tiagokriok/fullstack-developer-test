@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import { Link } from 'react-router-dom';
 import { FiChevronRight } from 'react-icons/fi';
 import api from '../../services/api';
 
@@ -25,13 +26,13 @@ const Dashboard: React.FC = () => {
       <a href="test">New Product</a>
       <Products>
         {products.map(product => (
-          <a key={product.id} href="test">
+          <Link key={product.id} to={`/product/${product.id}`}>
             <div>
               <strong>{product.name}</strong>
               <p>{product.description}</p>
             </div>
             <FiChevronRight size={20} />
-          </a>
+          </Link>
         ))}
       </Products>
     </Container>
