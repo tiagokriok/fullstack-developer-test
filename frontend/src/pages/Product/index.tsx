@@ -1,6 +1,6 @@
 /* eslint-disable no-console */
 import React, { useState, useEffect } from 'react';
-import { useParams, Link } from 'react-router-dom';
+import { useParams, Link, useHistory } from 'react-router-dom';
 import {
   FiChevronLeft,
   FiEdit,
@@ -32,13 +32,22 @@ interface Product {
 
 const Product: React.FC = () => {
   const [product, setProduct] = useState<Product>();
+  const [buttonClicked, setButtonClicked] = useState(false);
   const params = useParams<ProductParameters>();
+
+  const history = useHistory();
 
   useEffect(() => {
     api.get(`products/${params.id}`).then(response => {
       setProduct(response.data);
     });
   }, [params.id]);
+
+  async function handleDeleteProduct() {
+    await api.delete(`products/${params.id}`);
+
+    history.push('/');
+  }
 
   return (
     <>
@@ -108,10 +117,27 @@ const Product: React.FC = () => {
           Update
           <FiEdit size={20} />
         </a>
-        <a href="delete">
-          Delete
-          <FiTrash2 size={20} />
-        </a>
+        {buttonClicked ? (
+          <div id="deleteContainer">
+            <button id="yesBtn" type="button" onClick={handleDeleteProduct}>
+              YES
+            </button>
+            <button
+              id="noBtn"
+              type="button"
+              onClick={() => setButtonClicked(false)}
+            >
+              NO
+            </button>
+          </div>
+        ) : (
+          <div>
+            <button type="button" onClick={() => setButtonClicked(true)}>
+              Delete
+              <FiTrash2 size={20} />
+            </button>
+          </div>
+        )}
       </Container>
     </>
   );

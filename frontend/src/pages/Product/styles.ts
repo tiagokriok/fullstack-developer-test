@@ -94,13 +94,63 @@ export const Container = styled.div`
     background-color: #e06161;
     border-radius: 10px;
     font-weight: bold;
+    transition: background-color 0.2s;
+
+    &:hover {
+      background-color: ${shade(0.2, '#e06161')};
+    }
 
     svg {
       margin-left: 6px;
     }
+  }
 
-    & + a {
-      background-color: #ec465c;
+  button {
+    padding: 20px;
+    background-color: #ec465c;
+    border: 0;
+    color: white;
+    font-weight: bold;
+    display: flex;
+    align-items: center;
+    border-radius: 10px;
+    transition: background-color 0.2s;
+
+    &:hover {
+      background-color: ${shade(0.2, '#ec465c')};
+    }
+
+    svg {
+      margin-left: 6px;
+    }
+  }
+
+  #deleteContainer {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    #yesBtn {
+      background-color: #2ea043;
+      width: 70px;
+
+      &:hover {
+        background-color: ${shade(0.2, '#2ea043')};
+      }
+    }
+
+    #noBtn {
+      width: 70px;
+
+      &:hover {
+        background-color: ${shade(0.2, '#ec465c')};
+      }
+    }
+
+    button {
+      & + button {
+        margin-left: 8px;
+      }
     }
   }
 `;
