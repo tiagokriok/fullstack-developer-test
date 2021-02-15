@@ -23,7 +23,7 @@ const Dashboard: React.FC = () => {
   return (
     <Container>
       <Title>List of Products</Title>
-      <a href="test">New Product</a>
+      <Link to="/create">New Product</Link>
       <Products>
         {products.map(product => (
           <Link key={product.id} to={`/product/${product.id}`}>
